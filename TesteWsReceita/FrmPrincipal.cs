@@ -1,0 +1,134 @@
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Diagnostics;
+using System.Drawing;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web.Script.Serialization;
+using System.Windows.Forms;
+
+namespace TesteWsReceita
+{
+    public partial class FrmPrincipal : Form
+    {
+        public FrmPrincipal()
+        {
+            InitializeComponent();
+        }
+
+        private void  btnObterDados_Click(object sender, EventArgs e)
+        {
+            if(!string.IsNullOrEmpty(msktxtCNPJ.Text))
+            {
+                if (!string.IsNullOrWhiteSpace(msktxtCNPJ.Text))
+                {
+                    msktxtCNPJ.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    string strValidar = msktxtCNPJ.Text;
+
+                    if (strValidar.Length < 14)
+                    {
+                        MessageBox.Show("O CNPJ informado possui menos de 14 caracteres, que é o padrão da Receita Federal. Por favor, digite novamente.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msktxtCNPJ.Focus();
+                    }
+                    else
+                    {
+                        msktxtCNPJ.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                        string strCNPJSemFormatacao = msktxtCNPJ.Text;
+
+                        string strLinkReceita = "https://www.receitaws.com.br/v1/cnpj/" + strCNPJSemFormatacao;
+
+                        using (var client = new WebClient())
+                        {
+                            var json = client.DownloadString(strLinkReceita);
+                            var serializer = new JavaScriptSerializer();
+                            var novaReceitaWSRoot = new JavaScriptSerializer().Deserialize<ClasseDadosReceitaWS.Root>(json);
+                            var novaReceitaAtividadePrincipal = new JavaScriptSerializer().Deserialize<ClasseDadosReceitaWS.AtividadePrincipal>(json);
+
+                            if(!novaReceitaWSRoot.Status.Contains("ERROR"))
+                            {
+                                txtCNPJ.Text = novaReceitaWSRoot.Cnpj.ToString();
+                                txtNomeEmpresa.Text = novaReceitaWSRoot.Nome.ToString();
+                                txtTelefone.Text = novaReceitaWSRoot.Telefone.ToString();
+                                txtEmailEmpresa.Text = novaReceitaWSRoot.Email.ToString();
+                                txtEnderecoCompleto.Text = novaReceitaWSRoot.Logradouro + novaReceitaWSRoot.Numero + ", " + novaReceitaWSRoot.Bairro + " (" + novaReceitaWSRoot.Municipio + ")";
+                                txtUF.Text = novaReceitaWSRoot.Uf.ToString();
+                                txtSituacaoEmpresa.Text = novaReceitaWSRoot.Situacao.ToString();
+                                txtDataAbertura.Text = novaReceitaWSRoot.Abertura.ToString();
+                                txtCEP.Text = novaReceitaWSRoot.Cep.ToString();
+
+                                btnLimparDados.Enabled = true;
+                            }
+                            else
+                            {
+                                MessageBox.Show("O CNPJ informado não existe ou não é válido para consulta ou ainda não consta como ativo na Receita Federal do Brasil.\nPor favor, verifique e tente novamente.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                msktxtCNPJ.Focus();
+                            }
+
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("O campo de CNPJ está com espaços em branco. Por favor, digite novamente.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    msktxtCNPJ.Focus();
+                }
+            }
+            else
+            {
+                MessageBox.Show("O campo de CNPJ informado é inválido. Por favor, digite novamente.", "Confirmação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                msktxtCNPJ.Focus();
+            }
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            btnLimparDados.Enabled = false;
+        }
+
+        private void lbllinkGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/MardSilva");
+        }
+
+        private void linklblOliviaLinkedin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://linkedin.com/in/olivia-navarro-abaaa191");
+        }
+
+        private void btnLimparDados_Click(object sender, EventArgs e)
+        {
+            foreach (Control controles in grpDadosEmpresa.Controls)
+            {
+                if(controles is TextBox)
+                {
+                    ((TextBox)controles).Clear();
+                }
+                if (controles.HasChildren)
+                {
+                    ((TextBox)controles).Clear();
+                }
+            }
+            
+            //limpeza do MaskedBox
+
+            foreach (Control controles in grpCPNJ.Controls)
+            {
+                if (controles is MaskedTextBox)
+                {
+                    ((MaskedTextBox)controles).Clear();
+                }
+            }
+        }
+
+        private void msktxtCNPJ_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+    }
+}

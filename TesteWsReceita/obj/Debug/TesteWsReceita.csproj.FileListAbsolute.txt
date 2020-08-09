@@ -1,0 +1,13 @@
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.csprojAssemblyReference.cache
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.FrmPrincipal.resources
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.Properties.Resources.resources
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.csproj.GenerateResource.cache
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.csproj.CoreCompileInputs.cache
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\bin\Debug\TesteWsReceita.exe.config
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\bin\Debug\TesteWsReceita.exe
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\bin\Debug\TesteWsReceita.pdb
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.exe
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.pdb
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\bin\Debug\Newtonsoft.Json.dll
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\bin\Debug\Newtonsoft.Json.xml
+C:\Users\eym_s\source\repos\TesteWsReceita\TesteWsReceita\obj\Debug\TesteWsReceita.csproj.CopyComplete
