@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,13 +12,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
-using EswareReceitaWS;
 
 namespace TesteWsReceita
 {
     public partial class FrmPrincipal : Form
     {
-        DateTime fimTimer;
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -25,7 +24,7 @@ namespace TesteWsReceita
 
         private void  btnObterDados_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(msktxtCNPJ.Text))
+            if(!string.IsNullOrEmpty(msktxtCNPJ.Text))
             {
                 if (!string.IsNullOrWhiteSpace(msktxtCNPJ.Text))
                 {
@@ -51,7 +50,7 @@ namespace TesteWsReceita
                             var novaReceitaWSRoot = new JavaScriptSerializer().Deserialize<ClasseDadosReceitaWS.Root>(json);
                             var novaReceitaAtividadePrincipal = new JavaScriptSerializer().Deserialize<ClasseDadosReceitaWS.AtividadePrincipal>(json);
 
-                            if (!novaReceitaWSRoot.Status.Contains("ERROR"))
+                            if(!novaReceitaWSRoot.Status.Contains("ERROR"))
                             {
                                 txtCNPJ.Text = novaReceitaWSRoot.Cnpj.ToString();
                                 txtNomeEmpresa.Text = novaReceitaWSRoot.Nome.ToString();
@@ -72,16 +71,6 @@ namespace TesteWsReceita
                             }
 
                         }
-
-                        var minTimer = 3;
-                        var inicioTimer = DateTime.UtcNow;
-                        fimTimer = inicioTimer.AddMinutes(minTimer);
-
-                        tmrConsulta.Enabled = true;
-
-                        lblHoraConsulta.Visible = true;
-                        pcbInformacoes.Visible = true;
-                        lblHora.Visible = true;
                     }
                 }
                 else
@@ -100,9 +89,6 @@ namespace TesteWsReceita
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             btnLimparDados.Enabled = false;
-            lblHoraConsulta.Visible = false;
-            pcbInformacoes.Visible = false;
-            lblHora.Visible = false;
         }
 
         private void lbllinkGitHub_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -140,23 +126,7 @@ namespace TesteWsReceita
             }
         }
 
-        private void tmrConsulta_Tick(object sender, EventArgs e)
-        {
-            TimeSpan tmrTempoRestante = fimTimer - DateTime.UtcNow;
-
-            if(tmrTempoRestante < TimeSpan.Zero)
-            {
-                lblHoraConsulta.Visible = false;
-                pcbInformacoes.Visible = false;
-                lblHora.Visible = false;
-            }
-            else
-            {
-                lblHoraConsulta.Text = tmrTempoRestante.ToString("hh':'mm':'ss");
-            }
-        }
-
-        private void pcbInformacoes_Click(object sender, EventArgs e)
+        private void msktxtCNPJ_MouseHover(object sender, EventArgs e)
         {
 
         }

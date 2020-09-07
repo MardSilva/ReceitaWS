@@ -35,12 +35,10 @@
             this.msktxtCNPJ = new System.Windows.Forms.MaskedTextBox();
             this.btnObterDados = new System.Windows.Forms.Button();
             this.grpDadosEmpresa = new System.Windows.Forms.GroupBox();
-            this.lbllinkGitHub = new System.Windows.Forms.LinkLabel();
             this.txtEmailEmpresa = new System.Windows.Forms.TextBox();
             this.txtNomeEmpresa = new System.Windows.Forms.TextBox();
             this.txtEnderecoCompleto = new System.Windows.Forms.TextBox();
             this.txtCEP = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.txtSituacaoEmpresa = new System.Windows.Forms.TextBox();
             this.txtUF = new System.Windows.Forms.TextBox();
             this.txtDataAbertura = new System.Windows.Forms.TextBox();
@@ -57,27 +55,22 @@
             this.lblNome = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.btnLimparDados = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbllinkGitHub = new System.Windows.Forms.LinkLabel();
             this.Dicas = new System.Windows.Forms.ToolTip(this.components);
-            this.lblHora = new System.Windows.Forms.Label();
-            this.lblHoraConsulta = new System.Windows.Forms.Label();
-            this.tmrConsulta = new System.Windows.Forms.Timer(this.components);
-            this.pcbInformacoes = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.linklblOliviaLinkedin = new System.Windows.Forms.LinkLabel();
             this.grpCPNJ.SuspendLayout();
             this.grpDadosEmpresa.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbInformacoes)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(201, 29);
+            this.label1.Location = new System.Drawing.Point(268, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(511, 21);
+            this.label1.Size = new System.Drawing.Size(367, 21);
             this.label1.TabIndex = 0;
-            this.label1.Text = "EswareReceita WS - Aplicativo para consumo de dados da Receita Fderal";
+            this.label1.Text = "Consumo de Dados - Receita Federal (WebServices)";
             // 
             // grpCPNJ
             // 
@@ -104,6 +97,7 @@
             this.msktxtCNPJ.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.msktxtCNPJ.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.Dicas.SetToolTip(this.msktxtCNPJ, "Para obter os dados, digite aqui o CNPJ da empresa desejada!");
+            this.msktxtCNPJ.MouseHover += new System.EventHandler(this.msktxtCNPJ_MouseHover);
             // 
             // btnObterDados
             // 
@@ -118,14 +112,10 @@
             // 
             // grpDadosEmpresa
             // 
-            this.grpDadosEmpresa.Controls.Add(this.linklblOliviaLinkedin);
-            this.grpDadosEmpresa.Controls.Add(this.lbllinkGitHub);
             this.grpDadosEmpresa.Controls.Add(this.txtEmailEmpresa);
             this.grpDadosEmpresa.Controls.Add(this.txtNomeEmpresa);
             this.grpDadosEmpresa.Controls.Add(this.txtEnderecoCompleto);
             this.grpDadosEmpresa.Controls.Add(this.txtCEP);
-            this.grpDadosEmpresa.Controls.Add(this.label3);
-            this.grpDadosEmpresa.Controls.Add(this.label8);
             this.grpDadosEmpresa.Controls.Add(this.txtSituacaoEmpresa);
             this.grpDadosEmpresa.Controls.Add(this.txtUF);
             this.grpDadosEmpresa.Controls.Add(this.txtDataAbertura);
@@ -147,17 +137,6 @@
             this.grpDadosEmpresa.TabIndex = 2;
             this.grpDadosEmpresa.TabStop = false;
             this.grpDadosEmpresa.Text = "Dados da Empresa";
-            // 
-            // lbllinkGitHub
-            // 
-            this.lbllinkGitHub.AutoSize = true;
-            this.lbllinkGitHub.Location = new System.Drawing.Point(87, 248);
-            this.lbllinkGitHub.Name = "lbllinkGitHub";
-            this.lbllinkGitHub.Size = new System.Drawing.Size(213, 17);
-            this.lbllinkGitHub.TabIndex = 4;
-            this.lbllinkGitHub.TabStop = true;
-            this.lbllinkGitHub.Text = "Eymard Silva (MardSilva) no Github";
-            this.lbllinkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbllinkGitHub_LinkClicked);
             // 
             // txtEmailEmpresa
             // 
@@ -190,15 +169,6 @@
             this.txtCEP.Size = new System.Drawing.Size(112, 25);
             this.txtCEP.TabIndex = 2;
             this.Dicas.SetToolTip(this.txtCEP, "Neste campo, será preenchido o CEP do Lograduro da Empresa.");
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 248);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 17);
-            this.label8.TabIndex = 3;
-            this.label8.Text = "Criado por:";
             // 
             // txtSituacaoEmpresa
             // 
@@ -343,6 +313,26 @@
             this.btnLimparDados.UseVisualStyleBackColor = true;
             this.btnLimparDados.Click += new System.EventHandler(this.btnLimparDados_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(9, 465);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(75, 17);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Criado por:";
+            // 
+            // lbllinkGitHub
+            // 
+            this.lbllinkGitHub.AutoSize = true;
+            this.lbllinkGitHub.Location = new System.Drawing.Point(81, 465);
+            this.lbllinkGitHub.Name = "lbllinkGitHub";
+            this.lbllinkGitHub.Size = new System.Drawing.Size(213, 17);
+            this.lbllinkGitHub.TabIndex = 4;
+            this.lbllinkGitHub.TabStop = true;
+            this.lbllinkGitHub.Text = "Eymard Silva (MardSilva) no Github";
+            this.lbllinkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbllinkGitHub_LinkClicked);
+            // 
             // Dicas
             // 
             this.Dicas.AutomaticDelay = 1000;
@@ -352,75 +342,17 @@
             this.Dicas.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.Dicas.ToolTipTitle = "Dicas da Ferramenta";
             // 
-            // lblHora
-            // 
-            this.lblHora.AutoSize = true;
-            this.lblHora.Location = new System.Drawing.Point(9, 471);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(195, 17);
-            this.lblHora.TabIndex = 6;
-            this.lblHora.Text = "Próxima consulta disponível em:";
-            // 
-            // lblHoraConsulta
-            // 
-            this.lblHoraConsulta.AutoSize = true;
-            this.lblHoraConsulta.Location = new System.Drawing.Point(202, 471);
-            this.lblHoraConsulta.Name = "lblHoraConsulta";
-            this.lblHoraConsulta.Size = new System.Drawing.Size(56, 17);
-            this.lblHoraConsulta.TabIndex = 7;
-            this.lblHoraConsulta.Text = "00:00:00";
-            // 
-            // tmrConsulta
-            // 
-            this.tmrConsulta.Enabled = true;
-            this.tmrConsulta.Tick += new System.EventHandler(this.tmrConsulta_Tick);
-            // 
-            // pcbInformacoes
-            // 
-            this.pcbInformacoes.Image = global::EswareReceitaWS.Properties.Resources.info_sistema;
-            this.pcbInformacoes.Location = new System.Drawing.Point(260, 469);
-            this.pcbInformacoes.Name = "pcbInformacoes";
-            this.pcbInformacoes.Size = new System.Drawing.Size(20, 20);
-            this.pcbInformacoes.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pcbInformacoes.TabIndex = 8;
-            this.pcbInformacoes.TabStop = false;
-            this.Dicas.SetToolTip(this.pcbInformacoes, "A API usada da ReceitaWS, está operando em modo gratuito. E por esse motivo, tem " +
-        "");
-            this.pcbInformacoes.Click += new System.EventHandler(this.pcbInformacoes_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(594, 248);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(125, 17);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Em colaboração de:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // linklblOliviaLinkedin
-            // 
-            this.linklblOliviaLinkedin.AutoSize = true;
-            this.linklblOliviaLinkedin.Location = new System.Drawing.Point(725, 248);
-            this.linklblOliviaLinkedin.Name = "linklblOliviaLinkedin";
-            this.linklblOliviaLinkedin.Size = new System.Drawing.Size(151, 17);
-            this.linklblOliviaLinkedin.TabIndex = 4;
-            this.linklblOliviaLinkedin.TabStop = true;
-            this.linklblOliviaLinkedin.Text = "Olívia Navarro (LinkedIn)";
-            this.linklblOliviaLinkedin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linklblOliviaLinkedin_LinkClicked);
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(906, 500);
-            this.Controls.Add(this.pcbInformacoes);
-            this.Controls.Add(this.lblHoraConsulta);
-            this.Controls.Add(this.lblHora);
+            this.Controls.Add(this.lbllinkGitHub);
             this.Controls.Add(this.btnLimparDados);
             this.Controls.Add(this.grpDadosEmpresa);
             this.Controls.Add(this.grpCPNJ);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.label8);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -430,13 +362,12 @@
             this.Name = "FrmPrincipal";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "EswareReceita WS - Consumo de Dados da Receita Federal via API | ReceitaWS ";
+            this.Text = "Teste de Consumo de Serviço";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.grpCPNJ.ResumeLayout(false);
             this.grpCPNJ.PerformLayout();
             this.grpDadosEmpresa.ResumeLayout(false);
             this.grpDadosEmpresa.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcbInformacoes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,12 +403,6 @@
         private System.Windows.Forms.TextBox txtDataAbertura;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblHora;
-        private System.Windows.Forms.Label lblHoraConsulta;
-        private System.Windows.Forms.PictureBox pcbInformacoes;
-        private System.Windows.Forms.Timer tmrConsulta;
-        private System.Windows.Forms.LinkLabel linklblOliviaLinkedin;
-        private System.Windows.Forms.Label label3;
     }
 }
 
